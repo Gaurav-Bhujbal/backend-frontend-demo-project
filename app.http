@@ -1,0 +1,25 @@
+POST http://localhost:3000/register/
+Content-Type: application/json
+
+{
+    "username" : "Mayur",
+    "password" : "123456"
+}
+
+###
+
+POST http://localhost:3000/login/
+Content-Type: application/json
+
+{
+    "username" : "Mayur",
+    "password" : "123456"
+}
+
+###
+
+GET http://localhost:3000/home/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1heXVyIiwiaWF0IjoxNzU0MTYyNDM5LCJleHAiOjE3NTQxNjYwMzl9.O4LUAH2OBTirLq7m_OiKMX60s_oKP48Kr34uBTMJ_4U
+
+###
