@@ -87,7 +87,10 @@ app.post("/login", async (request, response) => {
 // Home page
 
 app.get("/home", async (request, response) => {
-  const jwtToken = request.headers["authorization"].split(" ")[1];
+  let jwtToken = request.headers["authorization"];
+  if (jwtToken !== undefined) {
+    jwtToken = jwtToken.split(" ")[1];
+  }
   if (jwtToken === undefined) {
     response.status(401);
     return response.json({ message: "1Invalid Token" });
