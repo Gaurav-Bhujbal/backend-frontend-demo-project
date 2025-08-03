@@ -2,7 +2,7 @@ POST http://localhost:3000/register/
 Content-Type: application/json
 
 {
-    "username" : "Mayur",
+    "username" : "Sameer",
     "password" : "123456"
 }
 
@@ -20,6 +20,6 @@ Content-Type: application/json
 
 GET http://localhost:3000/home/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1heXVyIiwiaWF0IjoxNzU0MTYyNDM5LCJleHAiOjE3NTQxNjYwMzl9.O4LUAH2OBTirLq7m_OiKMX60s_oKP48Kr34uBTMJ_4U
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Ik1heXVyIiwiaWF0IjoxNzU0MjA5NzIxLCJleHAiOjE3NTQyMTMzMjF9.merIka6nZFtz0aGkUw5bbmeaW-vAGCLmfH5Xa5UXlTA
 
 ###

@@ -84,31 +84,38 @@ app.post("/login", async (request, response) => {
   }
 });
 
-// Home page
+// middleware
 
-app.get("/home", async (request, response) => {
+const verifyToken = (request, response, next) => {
   let jwtToken = request.headers["authorization"];
   if (jwtToken !== undefined) {
     jwtToken = jwtToken.split(" ")[1];
   }
   if (jwtToken === undefined) {
     response.status(401);
-    return response.json({ message: "1Invalid Token" });
+    return response.json({ message: "Invalid Token" });
   }
+  jwt.verify(jwtToken, "private-key", (error, payload) => {
+    if (error) return response.status(403).json({ message: "Inavlid Token" });
+    request.username = payload.username;
 
-  jwt.verify(jwtToken, "private-key", async (error, payload) => {
-    if (error) return response.status(403).json({ message: "2Inavlid Token" });
-    const allUsersQuery = `
+    next();
+  });
+};
+
+// Home page
+
+app.get("/home/", verifyToken, async (request, response) => {
+  const allUsersQuery = `
           select * from user
       `;
-    const usersData = await db.all(allUsersQuery);
-    response.status(200);
-    const filteredUserData = usersData.map((each) => {
-      return each.username;
-    });
-    return response.send({
-      userInfo: filteredUserData,
-      loginUser: payload.username,
-    });
+  const usersData = await db.all(allUsersQuery);
+  response.status(200);
+  const filteredUserData = usersData.map((each) => {
+    return each.username;
+  });
+  return response.send({
+    userInfo: filteredUserData,
+    loginUser: request.username,
   });
 });
